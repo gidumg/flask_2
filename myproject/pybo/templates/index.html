@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+    <link rel = "stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('main.upload_file') }}">메인화면</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="#">PROKIT</a>
+                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link" href="{{ url_for('main.upload_file') }}"><button type="button" class="btn btn-primary">Your Button</button></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <head>
+        </form>
+        <title>엑셀 파일을 업로드 해 주세요.</title>
+
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #ffffff;
+                margin: 0;
+                padding: 20px;
+            }
+
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+
+            form {
+                max-width: 400px;
+                margin: 20px auto;
+                padding: 20px;
+                background-color: #D6D6D6;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            input[type="file"] {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            input[type="submit"] {
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            h2 {
+                margin-top: 20px;
+                color: #333;
+            }
+
+            pre {
+                background-color: #ffffff;
+                padding: 10px;
+                overflow-x: auto;
+                white-space: normal; /* 결과값 줄바꿈 방지 */
+            }
+
+            /* 미디어 쿼리를 사용하여 화면 크기에 따라 결과값 스타일 변경 */
+            @media (max-width: 600px) {
+                pre {
+                    font-size: 14px;
+                    padding: 5px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+
+        <h1>엑셀 파일을 업로드해 주세요</h1>
+        <form method="POST" action="{{ url_for('main.upload_file') }}" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="정보 찾기">
+        </form>
+        
+        <form method="POST" action="{{ url_for('main.search_model') }}">
+            <input type="text" name="model_name" placeholder="Enter model name">
+            <button type="submit">개별품목찾기</button>
+            
+        </form>
+
+
+        
+        {% if result %}
+        <h2>결과값은?</h2>
+        <pre>{{ result }}</pre>
+        {% endif %}
+    </body>
+</html>
